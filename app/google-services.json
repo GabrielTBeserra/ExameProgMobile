@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "106989412570",
+    "firebase_url": "https://examemobile.firebaseio.com",
+    "project_id": "examemobile",
+    "storage_bucket": "examemobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106989412570:android:ca190374d2f7dd2e7145e3",
+        "android_client_info": {
+          "package_name": "com.example.examemobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106989412570-70to9n8b676qrbqkh8mk1g641aqv9ff8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.examemobile",
+            "certificate_hash": "06cd34276dbd717b24e3a78a13e7bd2d2541944d"
+          }
+        },
+        {
+          "client_id": "106989412570-l42e945gbs5a9i3pd9u5osc06qa6n444.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKne9Gk-aR71L_Z4jaVvh0RqgXF6vtRgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106989412570-l42e945gbs5a9i3pd9u5osc06qa6n444.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

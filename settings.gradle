@@ -1,0 +1,2 @@
+rootProject.name='ExameMobile'
+include ':app'
