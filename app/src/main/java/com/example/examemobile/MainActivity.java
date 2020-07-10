@@ -19,30 +19,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar2);
+        user = FirebaseAuth.getInstance();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser firebaseUser = user.getCurrentUser();
-        isLogged(firebaseUser);
+        isLogged(user.getCurrentUser());
     }
 
     private void isLogged(FirebaseUser firebaseUser) {
-        String title = "Usuario nao logado!";
-        String msg = "Faco login";
-
         if (firebaseUser == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(title);
-            builder.setMessage(msg);
-            builder.create().show();
-        } else {
             Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
+        } else {
+            Intent intent = new Intent(MainActivity.this, Recipes.class);
+            startActivity(intent);
         }
-
     }
 
 
