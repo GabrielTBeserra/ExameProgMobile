@@ -1,13 +1,16 @@
-package com.example.examemobile;
+/*
+    Gabriel Teles - 827333
+*/
+package com.example.examemobile.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.examemobile.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void isLogged(FirebaseUser firebaseUser) {
         if (firebaseUser == null) {
-            Intent intent = new Intent(MainActivity.this, Login.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(MainActivity.this, Recipes.class);
+            Intent intent = new Intent(MainActivity.this, RecipeListActivity.class);
             startActivity(intent);
         }
     }

@@ -1,4 +1,7 @@
-package com.example.examemobile;
+/*
+    Gabriel Teles - 827333
+*/
+package com.example.examemobile.models;
 
 import com.google.firebase.firestore.DocumentId;
 
@@ -9,8 +12,7 @@ public class Recipe {
     private String ingredients;
     private String howToMake;
 
-    public Recipe(){
-
+    public Recipe() {
     }
 
     public Recipe(String id, String name, String ingredients, String howToMake) {
@@ -58,7 +60,7 @@ public class Recipe {
         this.howToMake = howToMake;
     }
 
-    public void copy(Recipe recipe){
+    public void copy(Recipe recipe) {
         this.name = recipe.getName();
         this.howToMake = recipe.getHowToMake();
         this.ingredients = recipe.getIngredients();

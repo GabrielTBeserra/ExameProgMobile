@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewRecipe">
+    tools:context=".activitys.RegisterRecipeActivity">
 
     <EditText
         android:id="@+id/edit_ing"
-        android:layout_width="691dp"
-        android:layout_height="26dp"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="12dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edit_name"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
@@ -32,8 +32,8 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="411dp"
-        android:layout_height="43dp"
+        android:layout_width="682dp"
+        android:layout_height="31dp"
         android:gravity="center_vertical"
         android:text="Nome da receita"
         android:textColor="#000000"
@@ -43,12 +43,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.416" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_width="686dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center_vertical"
         android:text="Ingredientes"
         android:textColor="#000000"
@@ -60,8 +61,9 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="0dp"
-        android:layout_height="34dp"
+        android:layout_width="689dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center_vertical"
         android:text="Modo de preparo"
         android:textColor="#000000"
@@ -73,9 +75,9 @@
 
     <EditText
         android:id="@+id/edit_how"
-        android:layout_width="679dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"

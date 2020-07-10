@@ -1,4 +1,7 @@
-package com.example.examemobile;
+/*
+    Gabriel Teles - 827333
+*/
+package com.example.examemobile.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,18 +9,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.examemobile.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "Login.class";
     private FirebaseAuth user;
     private ProgressBar progressBar;
@@ -46,13 +49,12 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
-                            System.out.println("LOGADO MAN");
-                            Intent intent = new Intent(Login.this, Recipes.class);
+                            hideProgressBar();
+                            Intent intent = new Intent(LoginActivity.this, RecipeListActivity.class);
                             startActivity(intent);
                         } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Login.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            invalidCred();
                         }
 
                     }
@@ -73,14 +75,32 @@ public class Login extends AppCompatActivity {
     }
 
     public void logging(View view) {
+        showProgressBar();
         String emailM = email.getText().toString();
         String pass = password.getText().toString();
+
+        if (emailM.equalsIgnoreCase("") || pass.equalsIgnoreCase("") || emailM == null || pass == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Informacoes Invalidas");
+            builder.setMessage("Por favor informe seus dados corretamente");
+            builder.create().show();
+            hideProgressBar();
+            return;
+        }
 
         login(emailM, pass);
     }
 
+    private void invalidCred() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Credenciais incorretas");
+        builder.setMessage("Email ou Senha invalidos!");
+        builder.create().show();
+        hideProgressBar();
+        return;
+    }
 
     public void newReg(View view) {
-        startActivity(new Intent(Login.this , Register.class));
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 }

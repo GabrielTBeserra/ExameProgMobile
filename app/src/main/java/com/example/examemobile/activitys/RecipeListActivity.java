@@ -1,4 +1,7 @@
-package com.example.examemobile;
+/*
+    Gabriel Teles - 827333
+*/
+package com.example.examemobile.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.examemobile.R;
 import com.example.examemobile.adapter.RecipeAdapter;
+import com.example.examemobile.fragments.RecipeDetailFragment;
+import com.example.examemobile.models.Recipe;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Recipes extends AppCompatActivity implements RecipeAdapter.OnItemClickListener {
+public class RecipeListActivity extends AppCompatActivity implements RecipeAdapter.OnItemClickListener {
 
     public static List<Recipe> recipes = new ArrayList<Recipe>();
     private FirebaseFirestore firebaseFirestore;
@@ -56,7 +64,7 @@ public class Recipes extends AppCompatActivity implements RecipeAdapter.OnItemCl
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Recipes.this, NewRecipe.class);
+                Intent intent = new Intent(RecipeListActivity.this, RegisterRecipeActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +85,7 @@ public class Recipes extends AppCompatActivity implements RecipeAdapter.OnItemCl
                     .addToBackStack(null)
                     .commit();
         } else {
-            Intent intent = new Intent(Recipes.this, RecipeDetailActivity.class);
+            Intent intent = new Intent(RecipeListActivity.this, RecipeDetailActivity.class);
             intent.putExtra("recipe_id", pos);
             startActivity(intent);
         }
@@ -103,7 +111,7 @@ public class Recipes extends AppCompatActivity implements RecipeAdapter.OnItemCl
                             }
                             recipeAdapter.notifyDataSetChanged();
                         } else {
-                            Toast.makeText(Recipes.this, "Error getting documents.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RecipeListActivity.this, "Error getting documents.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -122,9 +130,44 @@ public class Recipes extends AppCompatActivity implements RecipeAdapter.OnItemCl
         }
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        Toast.makeText(this, "Remove", Toast.LENGTH_LONG).show();
+        switch (item.getItemId()) {
+            case 456456:
+                removeRecipe(item.getGroupId());
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
     private void logOut() {
         auth.signOut();
-        startActivity(new Intent(Recipes.this, MainActivity.class));
+        startActivity(new Intent(RecipeListActivity.this, MainActivity.class));
+    }
+
+    private void removeRecipe(final int index) {
+        String id = recipes.get(index).getId();
+
+
+        firebaseFirestore.collection("recipes")
+                .document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        recipes.remove(index);
+                        Toast.makeText(RecipeListActivity.this, "Receita removida com sucesso", Toast.LENGTH_LONG).show();
+                        recipeAdapter.notifyItemRemoved(index);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(RecipeListActivity.this, "Error deleting data", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
 }

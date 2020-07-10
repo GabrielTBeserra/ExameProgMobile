@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login" >
+    tools:context=".activitys.LoginActivity" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,6 +44,7 @@
             android:id="@+id/ingre_text"
             android:layout_width="0dp"
             android:layout_height="112dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="36dp"
+            android:layout_marginEnd="10dp"
             android:gravity="center_vertical"
             android:text="Modo de preparo"
             android:textColor="#000000"
@@ -69,7 +71,9 @@
             android:id="@+id/how_text"
             android:layout_width="0dp"
             android:layout_height="142dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />

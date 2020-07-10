@@ -1,4 +1,7 @@
-package com.example.examemobile;
+/*
+    Gabriel Teles - 827333
+*/
+package com.example.examemobile.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,19 +9,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.examemobile.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "Register.class";
     private FirebaseAuth user;
     private FirebaseFirestore firebaseFirestore;
@@ -56,12 +59,11 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "createUserWithEmail:success");
-                            Intent intent = new Intent(Register.this, MainActivity.class);
+                            hideProgressBar();
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Register.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
                             jaRegistrado();
                         }
                     }
@@ -69,11 +71,23 @@ public class Register extends AppCompatActivity {
     }
 
     public void registrar(View view) {
-        String emailp = email.getText().toString();
-        String pss = password.getText().toString();
+        showProgressBar();
+        String emailM = email.getText().toString();
+        String pass = password.getText().toString();
+
+        if (emailM.equalsIgnoreCase("") || pass.equalsIgnoreCase("") || emailM == null || pass == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Informacoes Invalidas");
+            builder.setMessage("Por favor informe seus dados corretamente");
+            builder.create().show();
+            hideProgressBar();
+            return;
+        }
+
+
         showProgressBar();
 
-        register(emailp, pss);
+        register(emailM, pass);
     }
 
     private void jaRegistrado() {
@@ -83,5 +97,6 @@ public class Register extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(msg);
         builder.create().show();
+        hideProgressBar();
     }
 }

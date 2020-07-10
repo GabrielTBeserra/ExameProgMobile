@@ -1,8 +1,14 @@
-package com.example.examemobile;
+/*
+    Gabriel Teles - 827333
+*/
+package com.example.examemobile.activitys;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.examemobile.R;
+import com.example.examemobile.fragments.RecipeDetailFragment;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 

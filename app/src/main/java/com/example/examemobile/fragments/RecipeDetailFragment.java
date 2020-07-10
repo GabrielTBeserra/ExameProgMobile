@@ -1,4 +1,7 @@
-package com.example.examemobile;
+/*
+    Gabriel Teles - 827333
+*/
+package com.example.examemobile.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.examemobile.R;
+import com.example.examemobile.activitys.RecipeListActivity;
+import com.example.examemobile.models.Recipe;
 
 
 /**
@@ -33,7 +40,7 @@ public class RecipeDetailFragment extends Fragment {
         super.onCreate(bundle);
 
         if (getArguments().containsKey("recipe_id")) {
-            mRecipe = Recipes.recipes.get(getArguments().getInt("recipe_id"));
+            mRecipe = RecipeListActivity.recipes.get(getArguments().getInt("recipe_id"));
         }
     }
 

@@ -1,3 +1,7 @@
+/*
+    Gabriel Teles - 827333
+*/
+
 package com.example.examemobile.adapter;
 
 import android.view.ContextMenu;
@@ -10,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examemobile.R;
-import com.example.examemobile.Recipe;
+import com.example.examemobile.models.Recipe;
 
 import java.util.List;
 
@@ -45,13 +49,20 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         void onItemClick(int pos);
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener , View.OnCreateContextMenuListener {
         public TextView title_name;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title_name = itemView.findViewById(R.id.recipe_names);
             itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("Opcoes");
+            menu.add(getAdapterPosition(), 456456, 0, "Remove");
         }
 
         @Override
